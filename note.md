@@ -8,6 +8,6 @@
 
 * flashphoner - server + webrtc
 
-** http://flashphoner.com/
+    * http://flashphoner.com/
 
-** refer - http://befo.io/2627.html
+    * refer - http://befo.io/2627.html
