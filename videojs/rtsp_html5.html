@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML5 RTSP player example</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <style>
+        body {
+            max-width: 720px;
+            margin: 50px auto;
+        }
+
+        #test_video {
+            width: 720px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        input.input, .form-inline .input-group>.form-control {
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+<video id="test_video" controls autoplay>
+    <!-- <source src="rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov" type="application/x-rtsp"> -->
+    <!-- <source src="rtsp://mm2.pcslab.com/mm/7h800.mp4" type="application/x-rtsp"> -->
+    <source src="rtsp://mm2.pcslab.com/mm/" type="application/x-rtsp">
+<!--    <source src="http://www.streambox.fr/playlists/x36xhzz/x36xhzz.m3u8" type="application/x-mpegurl">-->
+</video>
+<div class="controls form">
+    <div>
+        Playback rate:&nbsp;
+        <input id="rate" class="input" type="range" min="0.5" max="5.0" value="1.0" step="0.5">
+        <output for="rate" id="rate_res">live</output>
+    </div>
+    <div>
+        <button id="to_end" class="btn btn-success">live</button>
+    </div>
+</div>
+<script src="test.bundle.js"></script>
+<script>
+    var range = document.getElementById('rate');
+    var set_live = document.getElementById('to_end');
+    var range_out = document.getElementById('rate_res');
+    var player = document.getElementById('test_video');
+    range.addEventListener('input', function () {
+        player.playbackRate = range.value;
+        range_out.innerHTML = `x${range.value}`;
+    });
+    set_live.addEventListener('click', function () {
+        range.value = 1.0;
+        range_out.innerHTML = `live`;
+        player.playbackRate = 1;
+        player.currentTime = player.seekable.end(player.seekable.length - 1);
+    });
+</script>
+<p><br>Have any suggestions to improve our player? <br>Feel free to leave comments or ideas email: specforge@gmail.com</p>
+</body>
+</html>
