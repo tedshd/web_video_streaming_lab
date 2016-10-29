@@ -51,11 +51,13 @@ var html5Player= videojs(
 });
 document.querySelector('#next').addEventListener('click', function() {
     count++;
+    console.log(count);
     html5Player.pause();
+    // html5Player.dispose();
     html5Player.src(list[count]);
     html5Player.play();
     if (count === (list.length -1)) {
-        count = 0;
+        count = -1;
     }
 });
 </script>
